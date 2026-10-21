@@ -1,0 +1,17 @@
+{
+  "name": "LifeOS \u2014 Build your next chapter",
+  "short_name": "LifeOS",
+  "description": "Career-first personal operating system",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0d100e",
+  "theme_color": "#101411",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
