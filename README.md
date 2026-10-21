@@ -1,31 +1,22 @@
-# LifeOS MVP
+# LifeOS MVP — AI + Reminders update
 
-A career-first, mobile-friendly personal operating system built as a static PWA.
+## Deploy
+Deploy this directory to Vercel. The app is static HTML plus a Vercel serverless endpoint at `/api/ai`.
 
-## Run locally
-- Open `index.html` in a browser for basic use.
-- For PWA install/offline support, serve this folder over HTTPS or localhost. Example: `python -m http.server 8000` then visit `http://localhost:8000`.
-- Deploy the folder as a static site on a free static hosting plan if available.
+## Enable real AI (free tier subject to Google's current limits)
+1. Create an API key at https://aistudio.google.com/app/apikey
+2. In Vercel, open project `lifeos-mvp` → Settings → Environment Variables.
+3. Add `GEMINI_API_KEY` with your key for Production (and Preview if desired).
+4. Redeploy after adding the variable. Do not put the key in `index.html`, GitHub, or a public message.
+5. Open LifeOS → AI Assistant. It should show “AI ready”.
 
-## Included
-- Adaptive-style daily task list (editable, flexible tasks)
-- Career roadmap, skill checklist, resume truth-checklist and job/project tracker
-- Discipline habits, focus timer and daily check-in/review
-- Local income/expense ledger
-- Hypothetical intraday paper-trade journal
-- JSON export/import and local reset
-- PWA manifest and offline static cache
+The key is used only by `/api/ai` on the server. Gemini's free tier has model-specific quotas and terms; check Google's current docs. This endpoint limits input/output size but does not implement per-user rate limiting, so do not share the endpoint widely.
 
-## MVP limits
-- Data is stored in this browser's localStorage; it is not synced, encrypted, or backed up automatically.
-- No account/login, cloud database, cross-device sync, AI assistant, background push notifications, live market prices, broker integration, job-site scraping or automatic job applications.
-- Focus timer works while the page is open; background browser throttling may affect it.
-- The trading journal calculates gross hypothetical P/L only; it excludes charges and is not a recommendation.
-- The career path is a starting recommendation based on existing web skills; adjust based on actual job descriptions and your progress.
+## Reminders
+Reminders are stored in browser localStorage. Notifications need permission and can fire while the app is open and running. Browsers/Android may suspend timers or stop the page when closed; reliable closed-app push requires a push subscription and server-side store/sender. Use Android Clock/Calendar for critical alarms.
 
-## Next build milestones
-1. Add account authentication and a secure database only if a free-tier plan fits.
-2. Add tested reminder/notification permissions and time-zone-aware schedules.
-3. Add weekly review analytics and user-controlled plan adjustments.
-4. Add optional AI planning only after safe, affordable provider access is confirmed.
-5. Test accessibility, offline behavior, data migration and Android installation on real devices.
+## Privacy and limitations
+- Tasks and reminder records remain in browser localStorage; no account or cloud sync.
+- The app sends the current message plus a small task/career context to Google's Gemini API only when AI is used.
+- Do not enter passwords, API keys, or highly sensitive data in chat. AI can be wrong.
+- No job applications, payments, trades, emails, or external actions are executed automatically.
